@@ -1,6 +1,6 @@
 <?php
 
-$con=mysql_connect("localhost","root","");
+$con=mysqli_connect("localhost","root","");
 
 if (!$con)
 
@@ -10,11 +10,11 @@ die('Could not connect: ' . mysql_error());
 
 }
 
-mysql_select_db("mysql", $con);
+mysqli_select_db($con, "mysql");
 
 print "<h2>MySQL: Simple select statement</h2>";
 
-$result = mysql_query("select * from emp_dtl");
+$result = mysqli_query($con, "select * from emp_dtl");
 
 echo "<tableborder='1'>
 
@@ -32,7 +32,7 @@ echo "<tableborder='1'>
 
 </tr>";
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result,MYSQLI_BOTH))
 
 {
 
@@ -58,7 +58,7 @@ echo "</table>";
 
 //Create an index in PHP
 
-$result = mysql_query("CREATE INDEX xyz ON emp_dtl(id)",$con);
+$result = mysqli_query($con, "CREATE INDEX xyz ON emp_dtl(id)");
 
 print "<h2>MySQL: MySQl index has been Created. </h2>";
 
@@ -66,10 +66,10 @@ print "<h2>MySQL: MySQl index has been Created. </h2>";
 
 //Drop an index in PHP
 
-$result = mysql_query("DROP INDEX xyz ON emp_dtl",$con);
+$result = mysqli_query($con,"DROP INDEX xyz ON emp_dtl");
 
 print "<h2>MySQL: MySQl index has been Removed. </h2>";
 
-mysql_close($con);
+mysqli_close($con);
 
 ?>
