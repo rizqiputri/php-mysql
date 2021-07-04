@@ -7,7 +7,7 @@ if (!$con)
 
 {
 
-die('Could not connect: ' . mysql_error());
+die('Could not connect: ' . mysqli_error());
 
 }
 
